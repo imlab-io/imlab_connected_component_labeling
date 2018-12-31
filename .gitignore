@@ -13,7 +13,6 @@
 #######################
 build/
 bins/
-data/
 
 
 # Ignore Cache Files #
