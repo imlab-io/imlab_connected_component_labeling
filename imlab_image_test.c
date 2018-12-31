@@ -1,36 +1,37 @@
-// test all functionalities of the library
+// test connected component labeling algorithm of the library
 #include <stdio.h>
 #include <stdint.h>
 #include "imcore.h"
-#include "prcore.h"
 #include "iocore.h"
-#include <time.h>
 
 int main()
 {
-    int i,j,c;
-
-    double fill_inf[3] ={1,2,3.3};
-
+    // read image
     matrix_t *img   = imread("../data/bb.bmp");
 
+    // allocate gray, black-white and labeled image
     matrix_t *grayimg = matrix_create(uint8_t, rows(img), cols(img), 1);
     matrix_t *bwimg = matrix_create(uint8_t, rows(img), cols(img), 1);
     matrix_t *label = matrix_create(uint32_t, rows(img), cols(img), 1);
 
-    // grayscale
+    // convert input to grayscale
     rgb2gray(img, grayimg);
 
-    // binarize
+    // binarize the grayscale image
     imthreshold(grayimg, 128, bwimg);
 
+    // find connected components
     uint32_t conn = 0;
     bwlabel(bwimg, label, &conn);
+
+    // print the number of labels
     printf("Label: %d\n", conn);
+
+    // assign different color for eack connected component
     label2rgb(label, conn, img);
 
-    // test imwrite
-    imwrite(img, "bbrgb.bmp");
+    // test output
+    imwrite(img, "../data/bbrgb.bmp");
 
     return 0;
 }
