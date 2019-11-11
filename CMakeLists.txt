@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.6)
-project(face_detector_app C)
+cmake_minimum_required(VERSION 3.5)
+project(connected_component_labeling_app C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -13,7 +13,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/bins")
 set(CMAKE_BUILD_TYPE Release)
 
 # set header and source files for the test
-set(IMLAB_LIBRARY_DIRECTORY "../../imlab_library")
+set(IMLAB_LIBRARY_DIRECTORY "../../imlab_library/library/")
 
 include_directories(${IMLAB_LIBRARY_DIRECTORY}/include/)
 link_directories(${IMLAB_LIBRARY_DIRECTORY}/lib/)
